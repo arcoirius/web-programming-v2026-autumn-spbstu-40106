@@ -12,7 +12,7 @@ export class Game {
   }
 
   removePlatform(platform) {
-    this.platforms = this.platforms.filter(item => item !== platform);
+    this.platforms = this.platforms.filter((item) => item !== platform);
   }
 
   get platformCount() {
@@ -34,8 +34,8 @@ export function groupGamesByReleaseYear(games) {
 export function getUniquePlatforms(games) {
   const platforms = new Set();
 
-  games.forEach(game => {
-    game.platforms.forEach(platform => {
+  games.forEach((game) => {
+    game.platforms.forEach((platform) => {
       platforms.add(platform);
     });
   });
@@ -44,22 +44,25 @@ export function getUniquePlatforms(games) {
 }
 
 export function findGamesByPlatform(games, platform) {
-  return games.filter(game => game.platforms.includes(platform));
+  return games.filter((game) => game.platforms.includes(platform));
 }
 
 export function groupGamesByPlatformCount(games) {
-  return games.reduce((result, game) => {
+  const groups = new Map();
+
+  games.forEach((game) => {
     const count = game.platformCount;
 
-    if (!result[count]) {
-      result[count] = [];
+    if (!groups.has(count)) {
+      groups.set(count, []);
     }
 
-    result[count].push(game);
-    return result;
-  }, {});
+    groups.get(count).push(game);
+  });
+
+  return groups;
 }
 
 export function findGamesReleasedAfter(games, year) {
-  return games.filter(game => game.releaseYear > year);
+  return games.filter((game) => game.releaseYear > year);
 }

@@ -94,20 +94,22 @@ const books = [
 ];
 
 function ThemeToggle() {
-  const {theme, toggleTheme} = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
   return (
     <button
       className="theme-toggle"
+      data-testid="theme-toggle"
       type="button"
       onClick={toggleTheme}
       aria-label={isDark ? 'Включить светлую тему' : 'Включить тёмную тему'}
       title={isDark ? 'Светлая тема' : 'Тёмная тема'}
     >
-      <span className="theme-toggle__icon" aria-hidden="true">
+      <span className="theme-toggle-icon" aria-hidden="true">
         {isDark ? '☀️' : '🌙'}
       </span>
+
       <span>{isDark ? 'Светлая тема' : 'Тёмная тема'}</span>
     </button>
   );
@@ -147,7 +149,7 @@ function BookList() {
 
 function App() {
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-testid="app">
       <header className="header">
         <a className="logo" href="#catalog-title" aria-label="BookStore">
           <span className="logo__mark">B</span>

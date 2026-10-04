@@ -94,7 +94,7 @@ const books = [
 ];
 
 function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
+  const {theme, toggleTheme} = useTheme();
   const isDark = theme === 'dark';
 
   return (
@@ -131,14 +131,14 @@ function BookCard({book}) {
 function BookList() {
   return (
     <section className="catalog" aria-labelledby="catalog-title">
-      <div className="catalog__heading">
+      <div className="catalog-heading">
         <div>
           <p className="eyebrow">Каталог</p>
           <h1 id="catalog-title">Книжный магазин</h1>
         </div>
       </div>
 
-      <div className="book-grid">
+      <div className="book-grid" data-testid="book-list">
         {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
